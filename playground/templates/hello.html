@@ -4,16 +4,6 @@
     <h1>Hello {{ name }}</h1>
     {% else %}
     <h1>Hello World</h1>
-    {% endif %} {{orders}} {{product1}} {{customer1}} <br />
-    {{collection}} {% comment %}
-    <ul>
-      {%for product in products %}
-      <li>
-        {{product.customer.first_name}} - {{product.placed_at}} -
-        {{product.product.title}}
-      </li>
-      {% endfor %}
-    </ul>
-    {% endcomment %}
+    {% endif %} {{result}}
   </body>
 </html>

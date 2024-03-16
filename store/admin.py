@@ -5,6 +5,9 @@ from django.utils.html import format_html, urlencode
 from . import models
 
 
+admin.site.register(models.Cart)
+
+
 class InventoryFilter(admin.SimpleListFilter):
     title = "inventory"
     parameter_name = "inventory"

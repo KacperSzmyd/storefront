@@ -22,6 +22,7 @@ from .models import (
     Product,
     Collection,
     OrderItem,
+    ProductImage,
     Review,
     Cart,
     CartItem,
@@ -33,6 +34,7 @@ from .serializers import (
     CreateOrderSerializer,
     CustomerSerialzier,
     OrderSerializer,
+    ProductImageSerializer,
     ProductSerializer,
     CollectionSerializer,
     ReviewSerializer,
@@ -57,7 +59,7 @@ class CollectionViewSet(ModelViewSet):
 
 
 class ProductViewSet(ModelViewSet):
-    queryset = Product.objects.all().order_by("id")
+    queryset = Product.objects.prefetch_related("images").all().order_by("id")
     serializer_class = ProductSerializer
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_class = ProductFilter
@@ -77,6 +79,16 @@ class ProductViewSet(ModelViewSet):
                 }
             )
         return super().destroy(request, *args, **kwargs)
+
+
+class ProductImageViewset(ModelViewSet):
+    serializer_class = ProductImageSerializer
+
+    def get_queryset(self):
+        return ProductImage.objects.filter(product_id=self.kwargs["product_pk"])
+
+    def get_serializer_context(self):
+        return {"product_id": self.kwargs["product_pk"]}
 
 
 class ReviewViewSet(ModelViewSet):

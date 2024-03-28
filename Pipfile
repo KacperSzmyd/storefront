@@ -13,8 +13,16 @@ django-filter = "*"
 djoser = "*"
 djangorestframework-simplejwt = "*"
 pillow = "*"
+redis = "*"
+celery = "*"
+flower = "*"
 
 [dev-packages]
+pytest = "*"
+pytest-django = "*"
+pytest-watch = "*"
+model-bakery = "*"
+locust = "*"
 
 [requires]
-python_version = "3.12"
+python_version = "3.10"

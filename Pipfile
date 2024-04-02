@@ -16,6 +16,7 @@ pillow = "*"
 redis = "*"
 celery = "*"
 flower = "*"
+django-redis = "*"
 
 [dev-packages]
 pytest = "*"
@@ -23,6 +24,7 @@ pytest-django = "*"
 pytest-watch = "*"
 model-bakery = "*"
 locust = "*"
+django-silk = "*"
 
 [requires]
 python_version = "3.10"

@@ -1,17 +1,22 @@
 from django.shortcuts import render
-from django.core.cache import cache
-from .tasks import notify_customers
+from rest_framework.views import APIView
+import logging
 import requests
 
+logger = logging.getLogger(__name__)
 
-def say_hello(request):
-    key = "httpbin_result"
-    if cache.get(key) == None:
-        response = requests.get("https://httpbin.org/delay/2")
-        data = response.json()
-        cache.set(key, data)
 
-    context = {
-        "name": cache.get(key),
-    }
-    return render(request, "hello.html", context)
+class HelloView(APIView):
+    def get(self, request):
+        try:
+            logger.info("Calling httpbin")
+            response = requests.get("https://httpbin.org/delay/2")
+            logger.info("Recieved the response")
+            data = response.json()
+        except request.ConnectionError:
+            logger.critical("httpbin is offline")
+
+        context = {
+            "name": "Kacper",
+        }
+        return render(request, "hello.html", context)

@@ -1,5 +1,7 @@
-__pycache__/
 *.pyc
+__pycache__/
+/media/
+/static/
+general.log
 db.sqlite3
 .vscode
-storefront/settings.py

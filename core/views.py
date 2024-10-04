@@ -1,3 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import redirect
 
-# Create your views here.
+
+def go_to_api_root(request):
+    return redirect("/store/")
